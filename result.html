@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Data for {{ stock_info.title }}</h1>
+        <p>Price: {{ stock_info.price }}</p>
+        <p>Bull/Bear Case: {{ stock_info.bullbearcase }}</p>
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
