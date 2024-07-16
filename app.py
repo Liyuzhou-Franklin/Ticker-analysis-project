@@ -45,13 +45,19 @@ def get_stock_info(ticker):
     data2 = response2.json()
     article_links = [article['links']['self'] for article in data2['data']]
     articles_list = []
-    for link in article_links:
-        articles_list.append("seekingalpha.com" + link)
+    count = 1
+    while count <= 10:
+        for link in article_links:
+            articles_list.append("seekingalpha.com" + link)
+        count += 1
+
+    sentiment = "will soon implement"
 
     return {
         "title": ticker,
         "price": stock_data,
-        "articles": articles_list
+        "articles": articles_list,
+        "sentiment": sentiment
     }
 
 if __name__ == '__main__':
