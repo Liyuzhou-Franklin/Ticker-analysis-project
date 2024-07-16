@@ -9,8 +9,21 @@
 <body>
     <div class="container">
         <h1>Stock Data for {{ stock_info.title }}</h1>
-        <p>Price: {{ stock_info.price }}</p>
-        <p>Articles: {{ stock_info.articles }}</p>
+        <p><b>Price:</b></p>
+        <p>{{ stock_info.price }}</p>
+        <p><b>Seeking Alpha Articles:</b></p>
+        <p>{{ stock_info.articles[0] }}</p>
+        <p>{{ stock_info.articles[1] }}</p>
+        <p>{{ stock_info.articles[2] }}</p>
+        <p>{{ stock_info.articles[3] }}</p>
+        <p>{{ stock_info.articles[4] }}</p>
+        <p>{{ stock_info.articles[5] }}</p>
+        <p>{{ stock_info.articles[6] }}</p>
+        <p>{{ stock_info.articles[7] }}</p>
+        <p>{{ stock_info.articles[8] }}</p>
+        <p>{{ stock_info.articles[9] }}</p>
+        <p><b>Seeking Alpha Sentiment:</b></p>
+        <p>{{ stock_info.sentiment }}</p>
         <a href="/">Go Back</a>
     </div>
 </body>
