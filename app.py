@@ -29,9 +29,9 @@ def get_last_workday():
 
 def overall_sentiment(buy, hold, sell):
     sum = buy + hold + sell
-    if buy > sell & hold/sum < 0.4:
+    if (buy > sell) & (hold/sum < 0.4):
         return "buy"
-    elif sell > buy & hold/sum < 0.4:
+    elif (sell > buy) & (hold/sum < 0.4):
         return "sell"
     else:
         return "hold"
