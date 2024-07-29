@@ -27,6 +27,15 @@ def get_last_workday():
     last_workday_str = last_workday.strftime('%Y-%m-%d 00:00:00')
     return last_workday_str
 
+def overall_sentiment(buy, hold, sell):
+    sum = buy + hold + sell
+    if buy > sell & hold/sum < 0.4:
+        return "buy"
+    elif sell > buy & hold/sum < 0.4:
+        return "sell"
+    else:
+        return "hold"
+
 def get_stock_info(ticker):
     url = f"https://seeking-alpha.p.rapidapi.com/symbols/get-chart"
     querystring = {"symbol": ticker}
@@ -40,8 +49,8 @@ def get_stock_info(ticker):
     stock_data = data['attributes'][date]
 
     url2 = f"https://seeking-alpha.p.rapidapi.com/analysis/list"
-    querystring = {"id": ticker}
-    response2 = requests.request("GET", url2, headers=headers, params=querystring)
+    querystring2 = {"id": ticker}
+    response2 = requests.request("GET", url2, headers=headers, params=querystring2)
     data2 = response2.json()
     article_links = [article['links']['self'] for article in data2['data']]
     articles_list = []
@@ -51,7 +60,23 @@ def get_stock_info(ticker):
             articles_list.append("seekingalpha.com" + link)
         count += 1
 
-    sentiment = "will soon implement"
+    url3 = f"https://seeking-alpha.p.rapidapi.com/symbols/get-ratings"
+    querystring3 = {"symbol": ticker}
+    response3 = requests.request("GET", url3, headers=headers, params=querystring3)
+    data3 = response3.json()
+    item = data3['data'][0]
+    attributes = item['attributes']
+    ratings = attributes.get('ratings', {})
+    extracted_info = {
+        'Date': attributes.get('asDate'),
+        'Number of authors recommending buy': ratings.get('authorsRatingBuyCount'),
+        'Number of authors recommending hold': ratings.get('authorsRatingHoldCount'),
+        'Number of authors recommending sell': ratings.get('authorsRatingSellCount'),
+        'Overall sentiment': overall_sentiment(ratings.get('authorsRatingBuyCount'),
+                                               ratings.get('authorsRatingHoldCount'),
+                                               ratings.get('authorsRatingSellCount'))
+    }
+    sentiment = extracted_info
 
     return {
         "title": ticker,
