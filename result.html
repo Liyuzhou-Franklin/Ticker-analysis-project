@@ -9,8 +9,14 @@
 <body>
     <div class="container">
         <h1>Stock Data for {{ stock_info.title }}</h1>
+
         <p><b>Price:</b></p>
-        <p>{{ stock_info.price }}</p>
+        <p>Open: {{ stock_info.price.get('open') }} | 
+            Close: {{ stock_info.price.get('close') }} | 
+            Daily high: {{ stock_info.price.get('high') }} | 
+            Daily low: {{ stock_info.price.get('low') }} | 
+            Volume: {{ stock_info.price.get('volume') }}</p>
+        
         <p><b>Seeking Alpha Articles:</b></p>
         <p>{{ stock_info.articles[0] }}</p>
         <p>{{ stock_info.articles[1] }}</p>
@@ -22,8 +28,22 @@
         <p>{{ stock_info.articles[7] }}</p>
         <p>{{ stock_info.articles[8] }}</p>
         <p>{{ stock_info.articles[9] }}</p>
-        <p><b>Seeking Alpha Sentiment:</b></p>
-        <p>{{ stock_info.sentiment }}</p>
+
+        <p><b>Market Sentiment:</b></p>
+        <p>Date: {{ stock_info.sentiment.get('date') }}</p>
+        <p>Number of authors recommending buy/hold/sell: 
+            {{ stock_info.sentiment.get('num_buy') }}/
+            {{ stock_info.sentiment.get('num_hold') }}/
+            {{ stock_info.sentiment.get('num_sell') }}</p>
+        <p>Overall sentiment: {{ stock_info.sentiment.get('overall') }}</p>
+
+        <p><b>Earnings Transcript:</b></p>
+        <p>{{ stock_info.transcript[0] }}</p>
+        <p>{{ stock_info.transcript[1] }}</p>
+        <p>{{ stock_info.transcript[2] }}</p>
+        <p>{{ stock_info.transcript[3] }}</p>
+        <p>{{ stock_info.transcript[4] }}</p>
+
         <a href="/">Go Back</a>
     </div>
 </body>
