@@ -45,6 +45,7 @@ def get_stock_info(ticker):
     }
 
     # 1. Retrieving price information
+    
     url = f"https://seeking-alpha.p.rapidapi.com/symbols/get-chart"
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = json.loads(response.text)
@@ -52,6 +53,7 @@ def get_stock_info(ticker):
     stock_data = data['attributes'][date]
 
     # 2. Retrieving the ten latest Seeking Alpha articles analyzing the stock
+    
     url2 = f"https://seeking-alpha.p.rapidapi.com/analysis/list"
     response2 = requests.request("GET", url2, headers=headers, params=querystring2)
     data2 = response2.json()
@@ -63,6 +65,7 @@ def get_stock_info(ticker):
             articles_list.append("seekingalpha.com" + link)
 
     # 3. Retrieving Seeking Alpha authors' buy/hold/sell opinions and calculating overall sentiment
+    
     url3 = f"https://seeking-alpha.p.rapidapi.com/symbols/get-ratings"
     response3 = requests.request("GET", url3, headers=headers, params=querystring)
     data3 = response3.json()
@@ -80,6 +83,7 @@ def get_stock_info(ticker):
     }
 
     # 4. Retrieving the five latest earnings call transcripts
+    
     url4 = "https://seeking-alpha.p.rapidapi.com/transcripts/list"
     response = requests.request("GET", url4, headers=headers, params=querystring2)
     data4 = response.json()
