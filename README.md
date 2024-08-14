@@ -7,7 +7,3 @@ Input stock ticker, returns:
 3. Seeking Alpha authors' opinions of the stock and overall sentiment.
 4. List of links to the five latest earning transcripts.
 5. List of links to the ten latest news articles analyzing this stock.
-
-- File "static" contains the CSS code for formatting the style of the webform
-- File "templates" contains the HTML code for the webform
-- File "venv" sets up the virtual environment used for developing this tool
