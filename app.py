@@ -45,7 +45,6 @@ def get_stock_info(ticker):
     }
 
     # 1. Retrieving price information
-    
     url = f"https://seeking-alpha.p.rapidapi.com/symbols/get-chart"
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = json.loads(response.text)
@@ -53,19 +52,16 @@ def get_stock_info(ticker):
     stock_data = data['attributes'][date]
 
     # 2. Retrieving the ten latest Seeking Alpha articles analyzing the stock
-    
     url2 = f"https://seeking-alpha.p.rapidapi.com/analysis/list"
     response2 = requests.request("GET", url2, headers=headers, params=querystring2)
     data2 = response2.json()
     article_links = [article['links']['self'] for article in data2['data']]
     articles_list = []
-    count = 1
-    for count in range(0, 10):
+    for i in range(0, 10):
         for link in article_links:
             articles_list.append("seekingalpha.com" + link)
 
     # 3. Retrieving Seeking Alpha authors' buy/hold/sell opinions and calculating overall sentiment
-    
     url3 = f"https://seeking-alpha.p.rapidapi.com/symbols/get-ratings"
     response3 = requests.request("GET", url3, headers=headers, params=querystring)
     data3 = response3.json()
@@ -83,8 +79,7 @@ def get_stock_info(ticker):
     }
 
     # 4. Retrieving the five latest earnings call transcripts
-    
-    url4 = "https://seeking-alpha.p.rapidapi.com/transcripts/list"
+    url4 = f"https://seeking-alpha.p.rapidapi.com/transcripts/list"
     response = requests.request("GET", url4, headers=headers, params=querystring2)
     data4 = response.json()
     transcript = []
@@ -92,13 +87,24 @@ def get_stock_info(ticker):
         earnings = data4['data'][i]
         link = earnings.get('links').get('self')
         transcript.append("seekingalpha.com" + link)
+
+    # 5. Retrieving the ten latest news articles on the stock
+    url5 = f"https://seeking-alpha.p.rapidapi.com/news/list"
+    response = requests.request("GET", url5, headers=headers, params=querystring2)
+    data5 = response.json()
+    news = []
+    for i in range(0, 10):
+        news_article = data5['data'][i]
+        link = news_article.get('links').get('self')
+        news.append("seekingalpha.com" + link)
     
     return {
         "title": ticker,
         "price": stock_data,
         "articles": articles_list,
         "sentiment": sentiment,
-        "transcript": transcript
+        "transcript": transcript,
+        "news": news
     }
 
 if __name__ == '__main__':
