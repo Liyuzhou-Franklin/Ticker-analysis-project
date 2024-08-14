@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Data for {{ stock_info.title }}</h1>
+
+        <p><b>Price:</b></p>
+        <p>Open: {{ stock_info.price.get('open') }} | 
+            Close: {{ stock_info.price.get('close') }} | 
+            Daily high: {{ stock_info.price.get('high') }} | 
+            Daily low: {{ stock_info.price.get('low') }} | 
+            Volume: {{ stock_info.price.get('volume') }}</p>
+        
+        <p><b>Seeking Alpha Analysis Articles:</b></p>
+        <p>{{ stock_info.articles[0] }}</p>
+        <p>{{ stock_info.articles[1] }}</p>
+        <p>{{ stock_info.articles[2] }}</p>
+        <p>{{ stock_info.articles[3] }}</p>
+        <p>{{ stock_info.articles[4] }}</p>
+        <p>{{ stock_info.articles[5] }}</p>
+        <p>{{ stock_info.articles[6] }}</p>
+        <p>{{ stock_info.articles[7] }}</p>
+        <p>{{ stock_info.articles[8] }}</p>
+        <p>{{ stock_info.articles[9] }}</p>
+
+        <p><b>Market Sentiment:</b></p>
+        <p>Date: {{ stock_info.sentiment.get('date') }}</p>
+        <p>Number of authors recommending buy/hold/sell: 
+            {{ stock_info.sentiment.get('num_buy') }}/
+            {{ stock_info.sentiment.get('num_hold') }}/
+            {{ stock_info.sentiment.get('num_sell') }}</p>
+        <p>Overall sentiment: {{ stock_info.sentiment.get('overall') }}</p>
+
+        <p><b>Earnings Transcript:</b></p>
+        <p>{{ stock_info.transcript[0] }}</p>
+        <p>{{ stock_info.transcript[1] }}</p>
+        <p>{{ stock_info.transcript[2] }}</p>
+        <p>{{ stock_info.transcript[3] }}</p>
+        <p>{{ stock_info.transcript[4] }}</p>
+
+        <p><b>News Articles:</b></p>
+        <p>{{ stock_info.news[0] }}</p>
+        <p>{{ stock_info.news[1] }}</p>
+        <p>{{ stock_info.news[2] }}</p>
+        <p>{{ stock_info.news[3] }}</p>
+        <p>{{ stock_info.news[4] }}</p>
+        <p>{{ stock_info.news[5] }}</p>
+        <p>{{ stock_info.news[6] }}</p>
+        <p>{{ stock_info.news[7] }}</p>
+        <p>{{ stock_info.news[8] }}</p>
+        <p>{{ stock_info.news[9] }}</p>
+
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
