@@ -40,7 +40,7 @@ def get_stock_info(ticker):
     querystring = {"symbol": ticker}
     querystring2 = {"id": ticker}
     headers = {
-        "x-rapidapi-key": "6e90a4cc5amsh9324a55e6e118a5p1f97c2jsn28aa5a6e6a0a",
+        "x-rapidapi-key": "my_key_number",
         "x-rapidapi-host": "seeking-alpha.p.rapidapi.com"
     }
 
